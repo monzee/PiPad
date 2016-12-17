@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/track_pad"
+    android:hapticFeedbackEnabled="true"
+    >
+
+    <TextView
+        android:id="@+id/the_pos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:orientation="horizontal"
+        android:layout_marginEnd="180dp"
+        android:layout_marginRight="180dp"
+        >
+
+        <Button
+            android:id="@+id/do_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="keyboard"
+            />
+
+        <Button
+            android:id="@+id/do_right_click"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="right click"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        >
+
+        <Button
+            android:id="@+id/do_down"
+            android:layout_width="56dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/do_up"
+            android:minWidth="56dp"
+            android:text="&#x21e9;"
+            />
+
+        <Button
+            android:id="@+id/do_up"
+            android:layout_width="56dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:minWidth="56dp"
+            android:text="&#x21e7;"
+            />
+
+        <Button
+            android:id="@+id/do_left"
+            android:layout_width="56dp"
+            android:layout_height="64dp"
+            android:layout_toLeftOf="@+id/do_down"
+            android:layout_marginTop="28dp"
+            android:minWidth="56dp"
+            android:text="&#x21e6;"
+            />
+
+        <Button
+            android:id="@+id/do_right"
+            android:layout_width="56dp"
+            android:layout_height="64dp"
+            android:layout_toRightOf="@+id/do_down"
+            android:layout_marginTop="28dp"
+            android:minWidth="56dp"
+            android:text="&#x21e8;"
+            />
+
+        <Button
+            android:id="@+id/do_escape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="48dp"
+            android:text="&#x274c;"
+            />
+
+        <Button
+            android:id="@+id/do_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="&#x21b5;"
+            />
+
+        <Button
+            android:id="@+id/do_page_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="48dp"
+            android:text="&#x219f;"
+            />
+
+        <Button
+            android:id="@+id/do_page_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="&#x21a1;"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

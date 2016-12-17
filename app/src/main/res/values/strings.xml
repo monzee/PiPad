@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PiPad</string>
+    <string name="keyboard">Keyboard</string>
+    <string name="right_click">Right click</string>
+    <string name="down">⇩</string>
+    <string name="up">⇧</string>
+    <string name="left">⇦</string>
+    <string name="right">⇨</string>
+    <string name="escape">❌</string>
+    <string name="enter">↵</string>
+    <string name="page_up">↟</string>
+    <string name="page_down">↡</string>
+</resources>
