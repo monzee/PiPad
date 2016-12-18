@@ -57,8 +57,9 @@
             android:layout_height="64dp"
             android:layout_centerInParent="true"
             android:layout_below="@+id/do_up"
+            android:layout_marginTop="-16dp"
             android:minWidth="56dp"
-            android:text="&#x21e9;"
+            android:text="@string/down"
             />
 
         <Button
@@ -68,7 +69,7 @@
             android:layout_centerInParent="true"
             android:layout_alignParentTop="true"
             android:minWidth="56dp"
-            android:text="&#x21e7;"
+            android:text="@string/up"
             />
 
         <Button
@@ -76,9 +77,12 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_toLeftOf="@+id/do_down"
-            android:layout_marginTop="28dp"
+            android:layout_toStartOf="@+id/do_down"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="-9dp"
+            android:layout_marginEnd="-9dp"
             android:minWidth="56dp"
-            android:text="&#x21e6;"
+            android:text="@string/left"
             />
 
         <Button
@@ -86,9 +90,12 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_toRightOf="@+id/do_down"
-            android:layout_marginTop="28dp"
+            android:layout_toEndOf="@id/do_down"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="-9dp"
+            android:layout_marginStart="-9dp"
             android:minWidth="56dp"
-            android:text="&#x21e8;"
+            android:text="@string/right"
             />
 
         <Button
@@ -97,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="48dp"
-            android:text="&#x274c;"
+            android:text="@string/escape"
             />
 
         <Button
@@ -105,7 +112,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="&#x21b5;"
+            android:text="@string/enter"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
             />
 
         <Button
@@ -113,9 +122,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="48dp"
-            android:text="&#x219f;"
+            android:text="@string/page_up"
             />
 
         <Button
@@ -123,8 +133,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:text="&#x21a1;"
+            android:text="@string/page_down"
             />
 
     </RelativeLayout>

@@ -1,6 +1,5 @@
 package ph.codeia.pipad;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
@@ -25,7 +24,7 @@ public class TrackPadFragment extends Fragment {
     private TextView pos;
     private Button keyboard;
     private final View[] clickables = new View[3];
-    private final View[] touchables = new View[6];
+    private final View[] holdables = new View[6];
     private Links links;
     private Remote remote;
 
@@ -49,7 +48,7 @@ public class TrackPadFragment extends Fragment {
                 R.id.do_up, R.id.do_down, R.id.do_left, R.id.do_right,
                 R.id.do_page_up, R.id.do_page_down,
         }) {
-            touchables[i++] = root.findViewById(id);
+            holdables[i++] = root.findViewById(id);
         }
         return root;
     }
@@ -58,7 +57,7 @@ public class TrackPadFragment extends Fragment {
     public void onResume() {
         super.onResume();
         AndroidLoaderStore scope = new AndroidLoaderStore(getActivity());
-        Task.Event<Remote> connection = scope.hardGet("on-connect");
+        Task.Subject<Remote> connection = scope.hardGet("on-connect", Task.Subject::new);
         Channel<Pair<Float, Float>> movement = scope.hardGet("movement", Replay::new);
         Channel<Integer> haptic = scope.hardGet("haptic-feedback", AndroidChannel::new);
         Channel<CharSequence> text = scope.hardGet("text-to-send", SimpleChannel::new);
@@ -80,13 +79,12 @@ public class TrackPadFragment extends Fragment {
                     for (View view : clickables) {
                         view.setOnClickListener(onKeyEvent);
                     }
-                    for (View view : touchables) {
+                    for (View view : holdables) {
                         view.setOnTouchListener(onKeyEvent);
                     }
 
-                    GestureDetector gestures = new GestureDetector(
-                            getContext(),
-                            new PadMotions(remote, movement, haptic));
+                    PadMotions onPadEvent = new PadMotions(remote, movement, haptic);
+                    GestureDetector gestures = new GestureDetector(getContext(), onPadEvent);
                     pad.setOnTouchListener((_v, motionEvent) -> {
                         gestures.onTouchEvent(motionEvent);
                         return true;

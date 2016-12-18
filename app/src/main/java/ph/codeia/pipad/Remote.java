@@ -11,11 +11,11 @@ import ph.codeia.signal.Channel;
  */
 public class Remote {
 
+    public enum Press { TAP, HOLD, RELEASE }
+
     private final Socket socket;
     private final DataOutputStream out;
     private final Channel<? super IOException> errors;
-
-    public enum Press { TAP, HOLD, RELEASE }
 
     public Remote(String host, int port, Channel<? super IOException> errors) throws IOException {
         socket = new Socket(host, port);

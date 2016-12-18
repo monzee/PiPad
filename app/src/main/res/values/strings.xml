@@ -2,12 +2,14 @@
     <string name="app_name">PiPad</string>
     <string name="keyboard">Keyboard</string>
     <string name="right_click">Right click</string>
-    <string name="down">⇩</string>
-    <string name="up">⇧</string>
-    <string name="left">⇦</string>
-    <string name="right">⇨</string>
-    <string name="escape">❌</string>
-    <string name="enter">↵</string>
-    <string name="page_up">↟</string>
-    <string name="page_down">↡</string>
+    <string name="down">&#x21e9;</string>
+    <string name="up">&#x21e7;</string>
+    <string name="left">&#x21e6;</string>
+    <string name="right">&#x21e8;</string>
+    <string name="escape">&#x274c;</string>
+    <string name="enter">&#x21b5;</string>
+    <string name="page_up">&#x219f;</string>
+    <string name="page_down">&#x21a1;</string>
+    <string name="ready">Ready.</string>
+    <string name="connecting">Connecting to %1$s:%2$d…</string>
 </resources>

@@ -25,7 +25,7 @@ public class PiPad extends Application {
             // You should not init your app in this process.
             return;
         }
-        LeakCanary.install(this);
+        //LeakCanary.install(this);
     }
 
 }

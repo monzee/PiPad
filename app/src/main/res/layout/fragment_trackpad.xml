@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/do_type"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="?attr/borderlessButtonStyle"
             android:text="@string/keyboard"
             />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/do_right_click"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="?attr/borderlessButtonStyle"
             android:text="@string/right_click"
             />
     </LinearLayout>
@@ -49,12 +49,23 @@
         android:layout_gravity="bottom"
         >
 
+        <View
+            android:layout_width="56dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="-8dp"
+            android:layout_marginLeft="-9dp"
+            android:layout_marginRight="-9dp"
+            android:id="@+id/guide"
+            />
+
         <Button
             android:id="@+id/do_down"
             android:layout_width="56dp"
             android:layout_height="64dp"
-            android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/guide"
             android:minWidth="56dp"
             android:text="@string/down"
             />
@@ -64,7 +75,7 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_centerInParent="true"
-            android:layout_above="@+id/do_down"
+            android:layout_above="@+id/guide"
             android:minWidth="56dp"
             android:text="@string/up"
             />
@@ -74,7 +85,7 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_centerInParent="true"
-            android:layout_toLeftOf="@+id/do_down"
+            android:layout_toLeftOf="@+id/guide"
             android:minWidth="56dp"
             android:text="@string/left"
             />
@@ -84,7 +95,7 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_centerInParent="true"
-            android:layout_toRightOf="@+id/do_down"
+            android:layout_toRightOf="@+id/guide"
             android:minWidth="56dp"
             android:text="@string/right"
             />
@@ -103,6 +114,8 @@
             android:layout_height="64dp"
             android:layout_alignParentBottom="true"
             android:text="@string/enter"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
             />
 
         <Button

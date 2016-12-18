@@ -37,8 +37,7 @@ public class PadKeys implements View.OnClickListener, View.OnTouchListener {
         switch (motionEvent.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 view.setPressed(true);
-                // TODO: not implemented in the server yet
-                // Task.now(() -> didTouch(view.getId(), true));
+                Task.now(() -> didTouch(view.getId(), true));
                 return true;
             case MotionEvent.ACTION_UP:  // fallthrough
             case MotionEvent.ACTION_CANCEL:

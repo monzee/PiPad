@@ -14,8 +14,8 @@ import ph.codeia.values.Do;
  */
 public class Task<In, Out> extends AsyncTask<In, Out, Exception> {
 
-    public static class Event<Out> {
-        public final Channel<Boolean> busy = new SimpleChannel<>();
+    public static class Subject<Out> {
+        public final Channel<Boolean> busy = new Replay<>();
         public final Channel<Out> done = new Replay<>();
         public final Channel<Exception> error = new SimpleChannel<>();
     }
@@ -25,34 +25,34 @@ public class Task<In, Out> extends AsyncTask<In, Out, Exception> {
     }
 
     private final Do.Map<In, Out> block;
-    private final Event<Out> on;
+    private final Subject<Out> on;
 
-    public Task(Event<Out> on, Do.Map<In, Out> block) {
+    public Task(Subject<Out> on, Do.Map<In, Out> block) {
         this.on = on;
         this.block = block;
     }
 
-    public static Task<Void, Void> of(Event<Void> on, CheckedRunnable block) {
+    public static Task<Void, Void> of(Subject<Void> on, CheckedRunnable block) {
         return new Task<>(on, _void -> {
             block.run();
             return null;
         });
     }
 
-    public static <Out> Task<Void, Out> of(Event<Out> on, Callable<Out> block) {
+    public static <Out> Task<Void, Out> of(Subject<Out> on, Callable<Out> block) {
         return new Task<>(on, _void -> block.call());
     }
 
-    public static Event<Void> now(CheckedRunnable block) {
-        Event<Void> event = new Event<>();
-        of(event, block).execute();
-        return event;
+    public static Subject<Void> now(CheckedRunnable block) {
+        Subject<Void> subject = new Subject<>();
+        of(subject, block).execute();
+        return subject;
     }
 
-    public static <Out> Event<Out> now(Callable<Out> block) {
-        Event<Out> event = new Event<>();
-        of(event, block).execute();
-        return event;
+    public static <Out> Subject<Out> now(Callable<Out> block) {
+        Subject<Out> subject = new Subject<>();
+        of(subject, block).execute();
+        return subject;
     }
 
     @SuppressWarnings("unchecked")
