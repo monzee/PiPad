@@ -25,7 +25,7 @@ public class TrackPadFragment extends Fragment {
     private Button keyboard;
     private final View[] clickables = new View[3];
     private final View[] holdables = new View[6];
-    private Links links;
+    private Channel.Link links;
     private Remote remote;
 
     public TrackPadFragment() {}

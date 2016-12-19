@@ -16,7 +16,7 @@ public class PadMotions extends GestureDetector.SimpleOnGestureListener {
     private final Remote remote;
     private final Channel<Pair<Float, Float>> movement;
     private final Channel<Integer> hapticFeedback;
-    private final float speed = 1.25f;
+    private final float speed = PiPad.CONFIG.speed();
 
     public PadMotions(
             Remote remote,

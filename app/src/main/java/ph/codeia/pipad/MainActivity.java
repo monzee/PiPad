@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +21,8 @@ import ph.codeia.signal.Links;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String HOST = "192.168.0.28";
-    private static final int PORT = 6000;
+    private static final String HOST = PiPad.CONFIG.host();
+    private static final int PORT = PiPad.CONFIG.port();
 
     private TextView status;
     private Channel.Link links;
@@ -92,6 +94,26 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         if (isFinishing()) {
             cleanlyDisconnect();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.do_launch_prefs:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.activity_main, new SettingsFragment(), "settings")
+                        .addToBackStack("settings")
+                        .commit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

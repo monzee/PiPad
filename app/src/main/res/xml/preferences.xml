@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <EditTextPreference
+        android:key="host"
+        android:title="Host name/IP address"
+        android:defaultValue="192.168.0.28"
+        />
+
+    <EditTextPreference
+        android:key="port"
+        android:title="Port"
+        android:defaultValue="6000"
+        android:numeric="integer"
+        android:inputType="number"
+        android:maxLength="5"
+        />
+
+    <SwitchPreferenceCompat
+        android:key="right-handed"
+        android:title="Landscape keys position"
+        android:defaultValue="false"
+        android:summaryOff="Left side"
+        android:summary="Right side"
+        />
+
+    <SeekBarPreference
+        android:key="speed"
+        android:title="Pointer speed"
+        android:defaultValue="25"
+        app:showSeekBarValue="false"
+        />
+
+</PreferenceScreen>

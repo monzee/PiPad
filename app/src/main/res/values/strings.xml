@@ -12,4 +12,5 @@
     <string name="page_down">&#x21a1;</string>
     <string name="ready">Ready.</string>
     <string name="connecting">Connecting to %1$s:%2$d…</string>
+    <string name="settings">Settings</string>
 </resources>
