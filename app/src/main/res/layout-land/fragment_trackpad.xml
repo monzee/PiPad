@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="?borderlessButtonStyle"
             android:text="keyboard"
             />
 
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="?borderlessButtonStyle"
             android:text="right click"
             />
     </LinearLayout>
@@ -52,36 +52,33 @@
         >
 
         <Button
-            android:id="@+id/do_down"
-            android:layout_width="56dp"
-            android:layout_height="64dp"
-            android:layout_centerInParent="true"
-            android:layout_below="@+id/do_up"
-            android:layout_marginTop="-16dp"
-            android:minWidth="56dp"
-            android:text="@string/down"
+            android:id="@+id/do_up"
+            android:layout_width="64dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="-13dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/up"
             />
 
         <Button
-            android:id="@+id/do_up"
-            android:layout_width="56dp"
-            android:layout_height="64dp"
-            android:layout_centerInParent="true"
-            android:layout_alignParentTop="true"
-            android:minWidth="56dp"
-            android:text="@string/up"
+            android:id="@+id/do_down"
+            android:layout_width="64dp"
+            android:layout_height="72dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/do_up"
+            android:text="@string/down"
             />
 
         <Button
             android:id="@+id/do_left"
             android:layout_width="56dp"
             android:layout_height="64dp"
-            android:layout_toLeftOf="@+id/do_down"
-            android:layout_toStartOf="@+id/do_down"
-            android:layout_marginTop="24dp"
+            android:layout_toLeftOf="@+id/do_up"
+            android:layout_toStartOf="@+id/do_up"
+            android:layout_marginTop="32dp"
             android:layout_marginRight="-9dp"
             android:layout_marginEnd="-9dp"
-            android:minWidth="56dp"
             android:text="@string/left"
             />
 
@@ -89,12 +86,11 @@
             android:id="@+id/do_right"
             android:layout_width="56dp"
             android:layout_height="64dp"
-            android:layout_toRightOf="@+id/do_down"
-            android:layout_toEndOf="@id/do_down"
-            android:layout_marginTop="24dp"
+            android:layout_toRightOf="@+id/do_up"
+            android:layout_toEndOf="@id/do_up"
+            android:layout_marginTop="32dp"
             android:layout_marginLeft="-9dp"
             android:layout_marginStart="-9dp"
-            android:minWidth="56dp"
             android:text="@string/right"
             />
 
@@ -113,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="@string/enter"
-            android:textColor="@color/colorAccent"
+            android:textColor="?colorAccent"
             android:textStyle="bold"
             />
 

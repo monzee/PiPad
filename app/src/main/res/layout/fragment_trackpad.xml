@@ -1,11 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/track_pad"
     android:hapticFeedbackEnabled="true"
     tools:context="ph.codeia.pipad.TrackPadFragment">
@@ -20,16 +17,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="144dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="128dp"
+        android:orientation="horizontal"
         >
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/do_type"
-            style="?attr/borderlessButtonStyle"
+            style="?borderlessButtonStyle"
             android:text="@string/keyboard"
             />
 
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/do_right_click"
-            style="?attr/borderlessButtonStyle"
+            style="?borderlessButtonStyle"
             android:text="@string/right_click"
             />
     </LinearLayout>
@@ -47,10 +46,13 @@
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         >
 
         <View
-            android:layout_width="56dp"
+            android:layout_width="64dp"
             android:layout_height="0dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="-8dp"
@@ -62,21 +64,19 @@
 
         <Button
             android:id="@+id/do_down"
-            android:layout_width="56dp"
-            android:layout_height="64dp"
+            android:layout_width="64dp"
+            android:layout_height="72dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/guide"
-            android:minWidth="56dp"
             android:text="@string/down"
             />
 
         <Button
             android:id="@+id/do_up"
-            android:layout_width="56dp"
-            android:layout_height="64dp"
+            android:layout_width="64dp"
+            android:layout_height="72dp"
             android:layout_centerInParent="true"
             android:layout_above="@+id/guide"
-            android:minWidth="56dp"
             android:text="@string/up"
             />
 
@@ -86,7 +86,7 @@
             android:layout_height="64dp"
             android:layout_centerInParent="true"
             android:layout_toLeftOf="@+id/guide"
-            android:minWidth="56dp"
+            android:layout_toStartOf="@+id/guide"
             android:text="@string/left"
             />
 
@@ -96,7 +96,7 @@
             android:layout_height="64dp"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@+id/guide"
-            android:minWidth="56dp"
+            android:layout_toEndOf="@+id/guide"
             android:text="@string/right"
             />
 
@@ -104,7 +104,6 @@
             android:id="@+id/do_escape"
             android:layout_width="56dp"
             android:layout_height="64dp"
-            android:minWidth="56dp"
             android:text="@string/escape"
             />
 
@@ -114,7 +113,7 @@
             android:layout_height="64dp"
             android:layout_alignParentBottom="true"
             android:text="@string/enter"
-            android:textColor="@color/colorAccent"
+            android:textColor="?colorAccent"
             android:textStyle="bold"
             />
 
@@ -123,7 +122,7 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_alignParentRight="true"
-            android:minWidth="56dp"
+            android:layout_alignParentEnd="true"
             android:hint="Page up"
             android:text="@string/page_up"
             />
@@ -133,6 +132,7 @@
             android:layout_width="56dp"
             android:layout_height="64dp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:hint="Page down"
             android:text="@string/page_down"
@@ -140,5 +140,6 @@
 
     </RelativeLayout>
 
+    <include layout="@layout/include_appbar" />
 
 </FrameLayout>

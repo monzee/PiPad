@@ -12,7 +12,11 @@ import com.squareup.leakcanary.LeakCanary;
 
 public class PiPad extends Application {
 
-    public static Config CONFIG = Config.DEFAULT;
+    private static Config CONFIG = Config.DEFAULT;
+
+    public static Config config() {
+        return CONFIG;
+    }
 
     @Override
     public void onCreate() {

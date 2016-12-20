@@ -1,12 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PrefsTheme</item>
+    </style>
+
+    <style name="PrefsTheme" parent="PreferenceThemeOverlay">
+        <item name="android:layout">@layout/fragment_settings</item>
+        <item name="android:textAppearanceLarge">?android:textAppearanceMedium</item>
     </style>
 
 </resources>

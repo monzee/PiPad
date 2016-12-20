@@ -13,4 +13,6 @@
     <string name="ready">Ready.</string>
     <string name="connecting">Connecting to %1$s:%2$d…</string>
     <string name="settings">Settings</string>
+    <string name="launch_settings">Open settings</string>
+    <string name="cant_connect">Can\'t connect to host at %1$s.\nCheck your connection settings.</string>
 </resources>
