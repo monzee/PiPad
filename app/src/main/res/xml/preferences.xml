@@ -6,15 +6,14 @@
         android:key="host"
         android:title="Host name/IP address"
         android:defaultValue="192.168.0.28"
+        android:dialogLayout="@layout/preference_edittext"
         />
 
     <EditTextPreference
         android:key="port"
         android:title="Port"
         android:defaultValue="6000"
-        android:numeric="integer"
-        android:inputType="number"
-        android:maxLength="5"
+        android:dialogLayout="@layout/preference_numeric_edittext"
         />
 
     <SwitchPreferenceCompat
