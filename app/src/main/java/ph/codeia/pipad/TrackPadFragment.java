@@ -2,7 +2,6 @@ package ph.codeia.pipad;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -95,7 +94,7 @@ public class TrackPadFragment extends Fragment {
                         return true;
                     });
 
-                    Debounce delay = new Debounce(100);
+                    Debounce delay = new Debounce(500);
                     keyboard.setOnClickListener(_v -> {
                         if (delay.check()) {
                             new TextEntryDialog().show(getChildFragmentManager(), "text-entry");

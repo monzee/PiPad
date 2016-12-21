@@ -18,14 +18,12 @@ import ph.codeia.signal.SimpleChannel;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private Channel<Void> change;
-    private boolean changed;
+    private Channel<Void> changed;
+    private boolean didChange;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
-        findPreference(Config.HOST).setOnPreferenceChangeListener(this::showValueAsSummary);
-        findPreference(Config.PORT).setOnPreferenceChangeListener(this::showValueAsSummary);
     }
 
     @Override
@@ -51,20 +49,27 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onResume() {
         super.onResume();
         AndroidLoaderStore store = new AndroidLoaderStore(getActivity());
-        change = store.hardGet("settings-changed", SimpleChannel::new);
+        changed = store.hardGet("settings-changed", SimpleChannel::new);
+        Config source = store.hardGet("config", PiPad::config);
+        Preference hostPref = findPreference(Config.HOST);
+        Preference portPref = findPreference(Config.PORT);
+        hostPref.setOnPreferenceChangeListener(this::showValueAsSummary);
+        hostPref.callChangeListener(source.host());
+        portPref.setOnPreferenceChangeListener(this::showValueAsSummary);
+        portPref.callChangeListener(source.port());
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (changed) {
-            change.send(null);
+        if (didChange) {
+            changed.send(null);
         }
     }
 
     boolean showValueAsSummary(Preference preference, Object value) {
         preference.setSummary(String.valueOf(value));
-        changed = true;
+        didChange = true;
         return true;
     }
 

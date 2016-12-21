@@ -22,7 +22,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/launch_settings"
-        style="?buttonBarPositiveButtonStyle"
+        style="?buttonBarButtonStyle"
+        />
+
+    <Button
+        android:id="@+id/do_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/retry"
+        style="?buttonBarButtonStyle"
         />
 
 </LinearLayout>

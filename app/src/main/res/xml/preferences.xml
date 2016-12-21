@@ -6,7 +6,7 @@
         android:key="host"
         android:title="Host name/IP address"
         android:defaultValue="192.168.0.28"
-        android:dialogLayout="@layout/preference_edittext"
+        android:dialogLayout="@layout/preference_uri_edittext"
         />
 
     <EditTextPreference
