@@ -2,11 +2,14 @@ package ph.codeia.pipad;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,6 +40,7 @@ public class TrackPadFragment extends Fragment {
             LayoutInflater inflater,
             ViewGroup container,
             Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_trackpad, container, false);
         pad = root.findViewById(R.id.track_pad);
         pos = (TextView) root.findViewById(R.id.the_pos);
@@ -94,10 +98,10 @@ public class TrackPadFragment extends Fragment {
                         return true;
                     });
 
-                    Debounce delay = new Debounce(500);
                     keyboard.setOnClickListener(_v -> {
-                        if (delay.check()) {
-                            new TextEntryDialog().show(getChildFragmentManager(), "text-entry");
+                        FragmentManager fm = getChildFragmentManager();
+                        if (fm.findFragmentByTag("text-entry") == null) {
+                            new TextEntryDialog().show(fm, "text-entry");
                         }
                     });
                 }));
@@ -109,6 +113,11 @@ public class TrackPadFragment extends Fragment {
         links.unlink();
         links = null;
         remote = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
     }
 
     private void tell(String msg, Object... fmtArgs) {

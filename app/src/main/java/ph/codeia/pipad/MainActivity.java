@@ -5,11 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     public enum To { PAD, SETTINGS, PROBLEM, NOWHERE }
 
-    private TextView status;
+    private View spinner;
     private Channel.Link links;
     private Remote remote;
 
@@ -35,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        status = (TextView) findViewById(R.id.the_status);
+        setSupportActionBar((Toolbar) findViewById(R.id.the_toolbar));
+        spinner = findViewById(R.id.the_spinner);
     }
 
     @Override
@@ -54,10 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 nav.link(this::go),
                 connection.busy.link(connecting -> {
                     if (connecting) {
-                        status.setVisibility(View.VISIBLE);
-                        status.setText(getString(R.string.connecting, conf.host(), conf.port()));
+                        spinner.setVisibility(View.VISIBLE);
                     } else {
-                        status.setVisibility(View.GONE);
+                        spinner.setVisibility(View.GONE);
                     }
                 }),
                 connection.done.link(it -> {
@@ -70,10 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     go(To.PROBLEM);
                 }),
                 settings.link(_v -> reconnect.send(null)),
-                reconnect.link(error -> {
-                    if (!retryPeriod.check()) {
-                        return;
-                    }
+                reconnect.link(retryPeriod.apply(error -> {
                     if (error != null) {
                         Log.d("mz", "socket write error: ", error);
                     }
@@ -82,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     Task.of(connection, () -> new Remote(conf.host(), conf.port(), reconnect))
                             .execute();
                     scope.put("should-connect", false);
-                }));
+                })));
         if (scope.get("should-connect", true)) {
             reconnect.send(null);
         } else {
@@ -105,12 +101,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("mz", "activity#destroy");
             cleanlyDisconnect();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
