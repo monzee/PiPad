@@ -9,7 +9,7 @@
         android:id="@+id/the_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="?android:dividerHorizontal">
+        android:background="@drawable/bottom_border">
 
         <ProgressBar
             android:id="@+id/the_spinner"

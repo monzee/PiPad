@@ -72,11 +72,7 @@ public class TrackPadFragment extends Fragment {
         Channel<Boolean> backspace = scope.hardGet("hold-backspace", SimpleChannel::new);
         links = Links.of(
                 haptic.link(pad::performHapticFeedback),
-                movement.link(pair -> {
-                    float dx = pair.first;
-                    float dy = pair.second;
-                    tell("x: %f y: %f%nx: %d y: %d", dx, dy, Math.round(dx), Math.round(dy));
-                }),
+                movement.link(pair -> {}),
                 text.link(chars -> Task.now(() -> remote.type(chars.toString()))),
                 backspace.link(hold -> Task.now(() -> remote
                         .backspace(hold ? Remote.Press.HOLD : Remote.Press.RELEASE))),
@@ -118,10 +114,6 @@ public class TrackPadFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main, menu);
-    }
-
-    private void tell(String msg, Object... fmtArgs) {
-        pos.setText(String.format(msg, fmtArgs));
     }
 
 }
