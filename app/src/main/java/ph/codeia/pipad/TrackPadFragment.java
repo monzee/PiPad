@@ -2,7 +2,6 @@ package ph.codeia.pipad;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import ph.codeia.androidutils.AndroidChannel;
@@ -27,7 +25,7 @@ public class TrackPadFragment extends Fragment {
 
     private View pad;
     private TextView pos;
-    private Button keyboard;
+    private View keyboard;
     private final View[] clickables = new View[3];
     private final View[] holdables = new View[6];
     private Channel.Link links;
@@ -44,7 +42,7 @@ public class TrackPadFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_trackpad, container, false);
         pad = root.findViewById(R.id.track_pad);
         pos = (TextView) root.findViewById(R.id.the_pos);
-        keyboard = (Button) root.findViewById(R.id.do_type);
+        keyboard = root.findViewById(R.id.do_type);
         int i = 0;
         for (int id : new int[] { R.id.do_right_click, R.id.do_enter, R.id.do_escape, }) {
             clickables[i++] = root.findViewById(id);
@@ -72,7 +70,6 @@ public class TrackPadFragment extends Fragment {
         Channel<Boolean> backspace = scope.hardGet("hold-backspace", SimpleChannel::new);
         links = Links.of(
                 haptic.link(pad::performHapticFeedback),
-                movement.link(pair -> {}),
                 text.link(chars -> Task.now(() -> remote.type(chars.toString()))),
                 backspace.link(hold -> Task.now(() -> remote
                         .backspace(hold ? Remote.Press.HOLD : Remote.Press.RELEASE))),
@@ -94,12 +91,8 @@ public class TrackPadFragment extends Fragment {
                         return true;
                     });
 
-                    keyboard.setOnClickListener(_v -> {
-                        FragmentManager fm = getChildFragmentManager();
-                        if (fm.findFragmentByTag("text-entry") == null) {
-                            new TextEntryDialog().show(fm, "text-entry");
-                        }
-                    });
+                    keyboard.setOnClickListener(_v -> TextEntryDialog
+                            .showOnce(getChildFragmentManager(), "text-entry"));
                 }));
     }
 

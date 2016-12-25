@@ -6,10 +6,10 @@
     <string name="up">&#x21e7;</string>
     <string name="left">&#x21e6;</string>
     <string name="right">&#x21e8;</string>
-    <string name="escape">&#x274c;</string>
-    <string name="enter">&#x21b5;</string>
-    <string name="page_up">&#x219f;</string>
-    <string name="page_down">&#x21a1;</string>
+    <string name="escape">Escape</string>
+    <string name="enter">Enter</string>
+    <string name="page_up">Page up</string>
+    <string name="page_down">Page down</string>
     <string name="ready">Ready.</string>
     <string name="connecting">Connecting to %1$s:%2$d…</string>
     <string name="settings">Settings</string>

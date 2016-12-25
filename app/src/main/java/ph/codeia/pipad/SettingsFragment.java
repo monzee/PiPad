@@ -6,8 +6,6 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,13 +34,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Toolbar toolbar = (Toolbar) root.findViewById(R.id.the_toolbar);
         toolbar.setTitle(R.string.settings);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        setHasOptionsMenu(true);
         return root;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.removeItem(R.id.do_launch_prefs);
     }
 
     @Override

@@ -115,28 +115,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void go(To where) {
-        FragmentManager fragments = getSupportFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         int container = R.id.fragment_container;
         switch (where) {
             case PAD:
-                if (fragments.findFragmentByTag("trackpad") == null) {
-                    fragments.beginTransaction()
+                if (fm.findFragmentByTag("trackpad") == null) {
+                    fm.beginTransaction()
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .replace(container, new TrackPadFragment(), "trackpad")
                             .commit();
                 }
                 break;
             case PROBLEM:
-                if (fragments.findFragmentByTag("problem") == null) {
-                    fragments.beginTransaction()
+                if (fm.findFragmentByTag("problem") == null) {
+                    fm.beginTransaction()
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .replace(container, new ProblemFragment(), "problem")
                             .commit();
                 }
                 break;
             case SETTINGS:
-                if (fragments.findFragmentByTag("settings") == null) {
-                    fragments.beginTransaction()
+                if (fm.findFragmentByTag("settings") == null) {
+                    fm.beginTransaction()
                             .setCustomAnimations(
                                     R.anim.fade_slide_in_right, android.R.anim.fade_out,
                                     android.R.anim.fade_in, R.anim.fade_slide_out_right)
@@ -146,10 +146,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case NOWHERE:
-                List<Fragment> fs = fragments.getFragments();
+                List<Fragment> fs = fm.getFragments();
                 if (fs != null) {
                     for (Fragment fragment : fs) {
-                        fragments.beginTransaction()
+                        fm.beginTransaction()
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                                 .remove(fragment)
                                 .commit();

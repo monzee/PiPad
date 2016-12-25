@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,6 +21,12 @@ import ph.codeia.signal.SimpleChannel;
 
 
 public class TextEntryDialog extends DialogFragment {
+
+    public static void showOnce(FragmentManager fm, String tag) {
+        if (fm.findFragmentByTag(tag) == null) {
+            new TextEntryDialog().show(fm, tag);
+        }
+    }
 
     private Channel<CharSequence> text;
     private Channel<Boolean> backspace;
@@ -56,6 +63,7 @@ public class TextEntryDialog extends DialogFragment {
                                 view.setPressed(true);
                                 backspace.send(true);
                                 return true;
+                            case MotionEvent.ACTION_CANCEL:  // fallthrough
                             case MotionEvent.ACTION_UP:
                                 view.setPressed(false);
                                 backspace.send(false);
