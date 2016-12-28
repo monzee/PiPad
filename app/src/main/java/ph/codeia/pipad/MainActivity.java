@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             case PAD:
                 if (fm.findFragmentByTag("trackpad") == null) {
                     fm.beginTransaction()
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .replace(container, new TrackPadFragment(), "trackpad")
                             .commit();
                 }

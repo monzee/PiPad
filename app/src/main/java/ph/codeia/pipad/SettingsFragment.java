@@ -1,11 +1,14 @@
 package ph.codeia.pipad;
 
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,9 +34,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         assert root != null;
-        Toolbar toolbar = (Toolbar) root.findViewById(R.id.the_toolbar);
-        toolbar.setTitle(R.string.settings);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar((Toolbar) root.findViewById(R.id.the_toolbar));
+        ActionBar actionBar = activity.getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.settings);
+        setHasOptionsMenu(true);
         return root;
     }
 
@@ -57,6 +64,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (didChange) {
             changed.send(null);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            getActivity().onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     boolean showValueAsSummary(Preference preference, Object value) {

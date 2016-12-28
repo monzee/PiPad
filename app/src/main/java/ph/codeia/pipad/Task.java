@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 
 import ph.codeia.signal.Channel;
 import ph.codeia.signal.Replay;
+import ph.codeia.signal.SimpleChannel;
 import ph.codeia.values.Do;
 
 /**
@@ -16,7 +17,7 @@ public class Task<In, Out> extends AsyncTask<In, Out, Exception> {
     public static class Subject<Out> {
         public final Channel<Boolean> busy = new Replay<>();
         public final Channel<Out> done = new Replay<>();
-        public final Channel<Exception> error = new Replay<>();
+        public final Channel<Exception> error = new SimpleChannel<>();
     }
 
     public interface CheckedRunnable {

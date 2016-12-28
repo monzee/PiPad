@@ -50,7 +50,7 @@ public class PiPad extends Application {
 
             @Override
             public float speed() {
-                int defaultValue = 100 * (int) (Config.DEFAULT.speed() - 1);
+                int defaultValue = (int) (Config.DEFAULT.speed() * 100) - 100;
                 return 1 + prefs.getInt(Config.SPEED, defaultValue) / 100f;
             }
         };
