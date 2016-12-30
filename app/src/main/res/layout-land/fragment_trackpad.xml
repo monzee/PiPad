@@ -2,10 +2,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/track_pad"
     android:hapticFeedbackEnabled="true"
     >
@@ -22,80 +18,100 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:orientation="horizontal"
-        android:layout_marginEnd="180dp"
-        android:layout_marginRight="180dp"
+        android:layout_marginEnd="214dp"
+        android:layout_marginRight="214dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         >
 
-        <Button
-            android:id="@+id/do_type"
+        <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="keyboard"
+            android:id="@+id/do_type"
+            style="?borderlessButtonStyle"
+            android:src="@drawable/ic_keyboard"
+            android:contentDescription="@string/keyboard"
             />
 
-        <Button
-            android:id="@+id/do_right_click"
+        <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="right click"
+            android:id="@+id/do_right_click"
+            style="?borderlessButtonStyle"
+            android:padding="0dp"
+            android:src="@drawable/ic_rightclick"
+            android:contentDescription="@string/right_click"
             />
+
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         >
 
-        <Button
-            android:id="@+id/do_down"
-            android:layout_width="56dp"
-            android:layout_height="64dp"
-            android:layout_centerInParent="true"
-            android:layout_below="@+id/do_up"
-            android:layout_marginTop="-16dp"
-            android:minWidth="56dp"
-            android:text="@string/down"
-            />
-
-        <Button
+        <ImageButton
             android:id="@+id/do_up"
-            android:layout_width="56dp"
-            android:layout_height="64dp"
-            android:layout_centerInParent="true"
+            android:layout_width="64dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="-13dp"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:minWidth="56dp"
-            android:text="@string/up"
+            android:src="@drawable/ic_up"
+            android:contentDescription="@string/up"
             />
 
-        <Button
+        <ImageButton
+            android:id="@+id/do_down"
+            android:layout_width="64dp"
+            android:layout_height="72dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/do_up"
+            android:src="@drawable/ic_down"
+            android:contentDescription="@string/down"
+            />
+
+        <View
+            android:id="@+id/guide"
+            android:layout_width="64dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/do_up"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-28dp"
+            />
+
+        <ImageButton
             android:id="@+id/do_left"
             android:layout_width="56dp"
             android:layout_height="64dp"
-            android:layout_toLeftOf="@+id/do_down"
-            android:layout_toStartOf="@+id/do_down"
-            android:layout_marginTop="24dp"
+            android:layout_toLeftOf="@id/guide"
+            android:layout_toStartOf="@id/guide"
             android:layout_marginRight="-9dp"
             android:layout_marginEnd="-9dp"
-            android:minWidth="56dp"
-            android:text="@string/left"
+            android:layout_alignTop="@id/guide"
+            android:src="@drawable/ic_left"
+            android:contentDescription="@string/left"
             />
 
-        <Button
+        <ImageButton
             android:id="@+id/do_right"
             android:layout_width="56dp"
             android:layout_height="64dp"
-            android:layout_toRightOf="@+id/do_down"
-            android:layout_toEndOf="@id/do_down"
-            android:layout_marginTop="24dp"
+            android:layout_toRightOf="@id/guide"
+            android:layout_toEndOf="@id/guide"
             android:layout_marginLeft="-9dp"
             android:layout_marginStart="-9dp"
-            android:minWidth="56dp"
-            android:text="@string/right"
+            android:layout_alignTop="@id/guide"
+            android:src="@drawable/ic_right"
+            android:contentDescription="@string/right"
             />
 
         <Button
@@ -104,6 +120,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="48dp"
+            android:drawableLeft="@drawable/ic_esc"
+            android:drawableStart="@drawable/ic_esc"
+            android:drawablePadding="4dp"
             android:text="@string/escape"
             />
 
@@ -112,9 +131,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@id/do_escape"
+            android:layout_alignRight="@id/do_escape"
+            android:layout_alignStart="@id/do_escape"
+            android:layout_alignEnd="@id/do_escape"
+            android:drawableLeft="@drawable/ic_ok"
+            android:drawableStart="@drawable/ic_ok"
+            android:drawablePadding="4dp"
             android:text="@string/enter"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
             />
 
         <Button
@@ -125,7 +149,11 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="48dp"
-            android:text="@string/page_up"
+            android:drawableRight="@drawable/ic_pageup"
+            android:drawableEnd="@drawable/ic_pageup"
+            android:drawablePadding="4dp"
+            android:minWidth="24dp"
+            android:text="Pg"
             />
 
         <Button
@@ -135,9 +163,15 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:text="@string/page_down"
+            android:drawableRight="@drawable/ic_pagedown"
+            android:drawableEnd="@drawable/ic_pagedown"
+            android:drawablePadding="4dp"
+            android:minWidth="24dp"
+            android:text="Pg"
             />
 
     </RelativeLayout>
+
+    <include layout="@layout/include_appbar" />
 
 </FrameLayout>

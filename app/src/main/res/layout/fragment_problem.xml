@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/the_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textAlignment="center"
+        tools:text="Unable to connect to host.\nCheck your connection settings."
+        />
+
+    <Button
+        android:id="@+id/do_launch_prefs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/launch_settings"
+        style="?buttonBarButtonStyle"
+        />
+
+    <Button
+        android:id="@+id/do_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/retry"
+        style="?buttonBarButtonStyle"
+        />
+
+</LinearLayout>

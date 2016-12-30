@@ -3,11 +3,14 @@ package ph.codeia.pipad;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import ph.codeia.androidutils.AndroidChannel;
@@ -22,10 +25,10 @@ public class TrackPadFragment extends Fragment {
 
     private View pad;
     private TextView pos;
-    private Button keyboard;
+    private View keyboard;
     private final View[] clickables = new View[3];
     private final View[] holdables = new View[6];
-    private Links links;
+    private Channel.Link links;
     private Remote remote;
 
     public TrackPadFragment() {}
@@ -35,10 +38,11 @@ public class TrackPadFragment extends Fragment {
             LayoutInflater inflater,
             ViewGroup container,
             Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_trackpad, container, false);
         pad = root.findViewById(R.id.track_pad);
         pos = (TextView) root.findViewById(R.id.the_pos);
-        keyboard = (Button) root.findViewById(R.id.do_type);
+        keyboard = root.findViewById(R.id.do_type);
         int i = 0;
         for (int id : new int[] { R.id.do_right_click, R.id.do_enter, R.id.do_escape, }) {
             clickables[i++] = root.findViewById(id);
@@ -50,6 +54,8 @@ public class TrackPadFragment extends Fragment {
         }) {
             holdables[i++] = root.findViewById(id);
         }
+        ((AppCompatActivity) getActivity())
+                .setSupportActionBar((Toolbar) root.findViewById(R.id.the_toolbar));
         return root;
     }
 
@@ -64,11 +70,6 @@ public class TrackPadFragment extends Fragment {
         Channel<Boolean> backspace = scope.hardGet("hold-backspace", SimpleChannel::new);
         links = Links.of(
                 haptic.link(pad::performHapticFeedback),
-                movement.link(pair -> {
-                    float dx = pair.first;
-                    float dy = pair.second;
-                    tell("x: %f y: %f%nx: %d y: %d", dx, dy, Math.round(dx), Math.round(dy));
-                }),
                 text.link(chars -> Task.now(() -> remote.type(chars.toString()))),
                 backspace.link(hold -> Task.now(() -> remote
                         .backspace(hold ? Remote.Press.HOLD : Remote.Press.RELEASE))),
@@ -90,8 +91,8 @@ public class TrackPadFragment extends Fragment {
                         return true;
                     });
 
-                    keyboard.setOnClickListener(_v -> new TextEntryDialog()
-                            .show(getChildFragmentManager(), "text-entry"));
+                    keyboard.setOnClickListener(_v -> TextEntryDialog
+                            .showOnce(getChildFragmentManager(), "text-entry"));
                 }));
     }
 
@@ -103,8 +104,9 @@ public class TrackPadFragment extends Fragment {
         remote = null;
     }
 
-    private void tell(String msg, Object... fmtArgs) {
-        pos.setText(String.format(msg, fmtArgs));
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
     }
 
 }

@@ -1,5 +1,7 @@
 package ph.codeia.pipad;
 
+import ph.codeia.values.Do;
+
 /**
  * This file is a part of the PiPad project.
  */
@@ -20,6 +22,14 @@ public class Debounce {
         }
         previous = now;
         return true;
+    }
+
+    public <T> Do.Just<T> apply(Do.Just<T> block) {
+        return t -> {
+            if (check()) {
+                block.got(t);
+            }
+        };
     }
 
 }
