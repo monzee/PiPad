@@ -59,8 +59,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDetach() {
+        super.onDetach();
         if (didChange) {
             changed.send(null);
         }

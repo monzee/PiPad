@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="PrefsTheme" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="android:layout">@layout/fragment_settings</item>
+        <item name="android:listPreferredItemPaddingStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:listPreferredItemPaddingEnd">@dimen/activity_horizontal_margin</item>
+    </style>
+
+</resources>

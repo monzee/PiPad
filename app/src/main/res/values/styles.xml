@@ -9,9 +9,10 @@
         <item name="preferenceTheme">@style/PrefsTheme</item>
     </style>
 
-    <style name="PrefsTheme" parent="PreferenceThemeOverlay">
+    <style name="PrefsTheme" parent="PreferenceThemeOverlay.v14.Material">
         <item name="android:layout">@layout/fragment_settings</item>
-        <item name="android:textAppearanceLarge">?android:textAppearanceMedium</item>
+        <item name="android:listPreferredItemPaddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:listPreferredItemPaddingRight">@dimen/activity_horizontal_margin</item>
     </style>
 
 </resources>

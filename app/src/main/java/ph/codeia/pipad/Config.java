@@ -5,7 +5,7 @@ public interface Config {
     String HOST = "host";
     String PORT = "port";
     String RIGHT_HANDED = "right-handed";
-    String SPEED = "pointer-speed";
+    String SPEED = "speed";
 
     Config DEFAULT = new Config() {
         @Override
